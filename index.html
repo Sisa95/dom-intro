@@ -59,7 +59,7 @@
             <div class="eight columns">
               <h5>Enter bill string</h5>
               <textarea name="name" rows="20" cols="40" class="billString" class="billString" ></textarea>
-              <button class="button-primary calculateBtn" on type="button" name="button" onclick="totalPhoneBill()">Calculate</button>
+<!--#######-->              <button class="button-primary calculateBtn" on type="button" name="button" onclick=myBtn()>Calculate</button>
             </div>
             <div class="four columns">
               <strong>Total amount:</strong>
@@ -67,6 +67,8 @@
             </div>
           </div>
         </div>
+
+        <!--Working here -->
         <div class="six columns box">
           <h3>Text input bill</h3>
 
@@ -88,7 +90,7 @@
 
               <label for="">Bill type</label>
               <input type="text" name="" value="" placeholder="enter 'call' or 'sms' " class="billTypeText">
-              <button class="button-primary addToBillBtn" type="button" name="button" >Add</button>
+              <button class="button-primary addToBillBtn" type="button" name="button" onclick=textBillTotal()>Add</button>
           </div>
             <div class="six columns">
               <h5>Totals</h5>
@@ -111,6 +113,8 @@
         </div>
 
       </div>
+
+      <!--End (not done)-->
       <div class="row">
         <div class="six columns box">
           <h3>Radio button bill</h3>
@@ -229,10 +233,12 @@
         </div>
       </div>
     </div>
+    
     <script src="js/calculate-bill.js" charset="utf-8"></script>
     <script src="js/text-bill.js" charset="utf-8"></script>
     <script src="js/radio-bill.js" charset="utf-8"></script>
     <script src="js/settings-bill.js" charset="utf-8"></script>
+
 
   </body>
 </html>
