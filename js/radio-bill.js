@@ -11,33 +11,44 @@
 // * add nothing for invalid values that is not 'call' or 'sms'.
 // * display the latest total on the screen
 
+var radioBillAddBtn = document.querySelector(".radioBillAddBtn")
 
-/*function increment(incrementor, target){
-    var value = parseInt(document.getElementById(target).value);
-    value+=incrementor;
-    document.getElementById(target).value = value;
-} */
+var callTotalTwo = document.querySelector(".callTotalTwo")
+var smsTotalTwo = document.querySelector(".smsTotalTwo")
+var totalTwo = document.querySelector(".totalTwo")
 
+var callCount =0;
+var smsCount = 0;
+var totalBill = 0;
 
-
-
-function totalPhoneBill() {
+function radioBillBtn() {
     var callCost = 2.75;
     var smsCost = 0.65;
-    var totalBill;
-    var callTotal = 0;
 
     var checkedRadioBtn = document.querySelector("input[name='billItemType']:checked");
-if (checkedRadioBtn){
-    var billItemType = checkedRadioBtn.value
-    // billItemType will be 'call' or 'sms'alert();
-    if(billItemType == "call"){
-        alert()
-        var bill = parseInt(document.querySelector(".billString").value);
-        bill += callCost   
-        var billCost = document.querySelector(".radioBillAddBtn").innerHTML = bill
+    if (checkedRadioBtn){
+        var billItemType = checkedRadioBtn.value
 
-    }
+        if(billItemType === "call") {
+            callCount += callCost;    
+        } else if(billItemType === "sms"){
+            smsCount += smsCost;
+        }
+
+        totalBill = callCount + smsCount;
+    
+        callTotalTwo.innerHTML = callCount.toFixed(2); 
+        smsTotalTwo.innerHTML = smsCount.toFixed(2); 
+        totalTwo.innerHTML = totalBill.toFixed(2);  
+       
+        if(totalBill >=30 && totalBill < 50 ){
+            totalTwo.style.color = "orange"; 
+        } else if(totalBill >=50){
+            totalTwo.style.color = "red";
+        } else if(totalBill < 30){
+            totalTwo.style.color = "black";
+        }
+    }    
 }
-   
-}
+
+radioBillAddBtn.addEventListener("click", radioBillBtn)
