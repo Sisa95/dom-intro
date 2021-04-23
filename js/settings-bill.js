@@ -35,28 +35,30 @@
     var sms = 0;
 
 function settingsFunction(){
+    //clearing html
+  var callCostSetting = document.querySelector(".callCostSetting").innerHTML = "0.00"
+  var totalSettings = document.querySelector(".totalSettings").innerHTML = "0.00"
+
+  //resetting variable
+   
 
     var callCostSetting = document.querySelector(".callCostSetting").value;
     var smsCostSetting = document.querySelector(".smsCostSetting").value;
     var warningLevelSetting = document.querySelector(".warningLevelSetting").value;
     var criticalLevelSetting = document.querySelector(".criticalLevelSetting").value; 
 
-    callCost = parseFloat(callCostSetting).toFixed(2);
-    smsCost = parseFloat(smsCostSetting).toFixed(2);
-    warningCap = parseFloat(warningLevelSetting).toFixed(2);
-    criticalCap = parseFloat(criticalLevelSetting).toFixed(2);
+    callCost = Number(callCostSetting);
+    smsCost = Number(smsCostSetting)
+    warningCap = Number(warningLevelSetting)
+    criticalCap = Number(criticalLevelSetting)
 }
 
 function calculate(){
+   
 
     var callTotalSettings = document.querySelector(".callTotalSettings");
     var smsTotalSettings = document.querySelector(".smsTotalSettings")
     var totalSettings = document.querySelector(".totalSettings")
- 
-
-    totalBill = callCost + smsCost;
-
-    
 
     var radioButtonChecked= document.querySelector("input[name='billItemTypeWithSettings']:checked");
   
@@ -65,11 +67,26 @@ function calculate(){
         
        
         if(billItemTypeWithSettings === "call") {
-            call = call + callCost; 
-            alert(call)   
+            call = call + callCost;  
         } else if(billItemTypeWithSettings === "sms"){
-            
+            sms = sms + smsCost; 
         }
+
+        totalBill = call + sms;
+      
+       
+            callTotalSettings.innerHTML = call.toFixed(2); 
+            smsTotalSettings.innerHTML = sms.toFixed(2); 
+            totalSettings.innerHTML = totalBill.toFixed(2); 
+
+            if(totalBill >=warningCap && totalBill < criticalCap ){
+                totalSettings.style.color = "orange"; 
+            } else if(totalBill > criticalCap){
+                totalSettings.style.color = "red";
+            } else if(totalBill < criticalCap){
+                totalSettings.style.color = "black";
+            }
+        
 
     }
 
