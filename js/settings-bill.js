@@ -72,21 +72,24 @@ function calculate(){
             sms = sms + smsCost; 
         }
 
-        totalBill = call + sms;
-      
-       
+        if(totalBill < criticalCap){
+            totalBill = call + sms;
             callTotalSettings.innerHTML = call.toFixed(2); 
             smsTotalSettings.innerHTML = sms.toFixed(2); 
             totalSettings.innerHTML = totalBill.toFixed(2); 
-
+        
             if(totalBill >=warningCap && totalBill < criticalCap ){
                 totalSettings.style.color = "orange"; 
-            } else if(totalBill > criticalCap){
-                totalSettings.style.color = "red";
             } else if(totalBill < criticalCap){
                 totalSettings.style.color = "black";
             }
-        
+        } else {
+            var mod = totalBill % criticalCap;
+            totalBill = totalBill - mod;
+            totalSettings.innerHTML = totalBill.toFixed(2); 
+            totalSettings.style.color = "red";
+
+        }
 
     }
 
