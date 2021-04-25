@@ -17,9 +17,9 @@ var callTotalTwo = document.querySelector(".callTotalTwo")
 var smsTotalTwo = document.querySelector(".smsTotalTwo")
 var totalTwo = document.querySelector(".totalTwo")
 
-var callCount =0;
-var smsCount = 0;
-var totalBill = 0;
+var callCount_RB =0;
+var callCount_RB = 0;
+var totalBill_RB = 0;
 
 function radioBillBtn() {
     var callCost = 2.75;
@@ -30,22 +30,22 @@ function radioBillBtn() {
         var billItemType = checkedRadioBtn.value
 
         if(billItemType === "call") {
-            callCount += callCost;    
+            callCount_RB += callCost;    
         } else if(billItemType === "sms"){
-            smsCount += smsCost;
+            callCount_RB += smsCost;
         }
 
-        totalBill = callCount + smsCount;
+        totalBill_RB = callCount_RB + callCount_RB;
     
-        callTotalTwo.innerHTML = callCount.toFixed(2); 
-        smsTotalTwo.innerHTML = smsCount.toFixed(2); 
-        totalTwo.innerHTML = totalBill.toFixed(2);  
+        callTotalTwo.innerHTML = callCount_RB.toFixed(2); 
+        smsTotalTwo.innerHTML = callCount_RB.toFixed(2); 
+        totalTwo.innerHTML = totalBill_RB.toFixed(2);  
        
-        if(totalBill >=30 && totalBill < 50 ){
+        if(totalBill_RB >=30 && totalBill_RB < 50 ){
             totalTwo.style.color = "orange"; 
-        } else if(totalBill >=50){
+        } else if(totalBill_RB >=50){
             totalTwo.style.color = "red";
-        } else if(totalBill < 30){
+        } else if(totalBill_RB < 30){
             totalTwo.style.color = "black";
         }
     }    

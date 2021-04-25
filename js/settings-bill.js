@@ -30,7 +30,7 @@
     var smsCost = 0;
     var warningCap = 0;
     var criticalCap = 0;
-    var totalBill = 0
+    var totalBillCost = 0
     var call = parseFloat(0.00);
     var sms = 0;
 
@@ -72,25 +72,24 @@ function calculate(){
             sms = sms + smsCost; 
         }
 
-        if(totalBill < criticalCap){
-            totalBill = call + sms;
+        if(totalBillCost < criticalCap){
+            totalBillCost = call + sms;
             callTotalSettings.innerHTML = call.toFixed(2); 
             smsTotalSettings.innerHTML = sms.toFixed(2); 
-            totalSettings.innerHTML = totalBill.toFixed(2); 
-        
-            if(totalBill >=warningCap && totalBill < criticalCap ){
+            totalSettings.innerHTML = totalBillCost.toFixed(2); 
+
+
+            if(totalBillCost >= criticalCap){
+                totalSettings.style.color = "red";
+            }
+             else if(totalBillCost >=warningCap && totalBillCost < criticalCap ){
                 totalSettings.style.color = "orange"; 
-            } else if(totalBill < criticalCap){
+            } else if(totalBillCost < criticalCap){
                 totalSettings.style.color = "black";
             }
-        } else {
-            var mod = totalBill % criticalCap;
-            totalBill = totalBill - mod;
-            totalSettings.innerHTML = totalBill.toFixed(2); 
-            totalSettings.style.color = "red";
-
+        } else{
+            alert("exceeded ")
         }
-
     }
 
 }
