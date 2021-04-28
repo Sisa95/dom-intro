@@ -36,15 +36,22 @@ var sms = 0;
 
 function settingsFunction(){
 
+var totalSettings = document.querySelector(".totalSettings");
 var callCostSetting = document.querySelector(".callCostSetting").value;
 var smsCostSetting = document.querySelector(".smsCostSetting").value;
 var warningLevelSetting = document.querySelector(".warningLevelSetting").value;
 var criticalLevelSetting = document.querySelector(".criticalLevelSetting").value; 
 
 callCost = Number(callCostSetting);
-smsCost = Number(smsCostSetting)
-warningCap = Number(warningLevelSetting)
-criticalCap = Number(criticalLevelSetting)
+smsCost = Number(smsCostSetting);
+warningCap = Number(warningLevelSetting);
+criticalCap = Number(criticalLevelSetting);
+
+    if(warningCap > totalBillCost){
+        totalSettings.style.color = "black";
+    } else if(warningCap == criticalCap){
+        totalSettings.style.color = "orange";
+    }
 }
 
 function calculate(){
@@ -81,8 +88,6 @@ if (radioButtonChecked){
         } else if(totalBillCost < criticalCap){
             totalSettings.style.color = "black";
         }
-    } else{
-        alert("exceeded ")
     }
 }
 
