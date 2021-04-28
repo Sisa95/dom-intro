@@ -17,35 +17,35 @@ var callTotalTwo = document.querySelector(".callTotalTwo")
 var smsTotalTwo = document.querySelector(".smsTotalTwo")
 var totalTwo = document.querySelector(".totalTwo")
 
-var callCount =0;
-var smsCount = 0;
-var totalBill = 0;
+var callCount_RB =0;
+var smsCount_RB = 0;
+var totalBill_RB = 0;
 
 function radioBillBtn() {
-    var callCost = 2.75;
-    var smsCost = 0.75;
+    var call_Cost = 2.75;
+    var sms_Cost = 0.65;
 
     var checkedRadioBtn = document.querySelector("input[name='billItemType']:checked");
     if (checkedRadioBtn){
         var billItemType = checkedRadioBtn.value
 
         if(billItemType === "call") {
-            callCount += callCost;    
+            callCount_RB += call_Cost;    
         } else if(billItemType === "sms"){
-            smsCount += smsCost;
+            smsCount_RB += sms_Cost;
         }
 
-        totalBill = callCount + smsCount;
-    
-        callTotalTwo.innerHTML = callCount.toFixed(2); 
-        smsTotalTwo.innerHTML = smsCount.toFixed(2); 
-        totalTwo.innerHTML = totalBill.toFixed(2);  
+        totalBill_RB = callCount_RB + smsCount_RB;
+
+        callTotalTwo.innerHTML = callCount_RB.toFixed(2); 
+        smsTotalTwo.innerHTML = smsCount_RB.toFixed(2); 
+        totalTwo.innerHTML = totalBill_RB.toFixed(2);  
        
-        if(totalBill >=30 && totalBill < 50 ){
+        if(totalBill_RB >=30 && totalBill_RB < 50 ){
             totalTwo.style.color = "orange"; 
-        } else if(totalBill >=50){
+        } else if(totalBill_RB >=50){
             totalTwo.style.color = "red";
-        } else if(totalBill < 30){
+        } else if(totalBill_RB < 30){
             totalTwo.style.color = "black";
         }
     }    

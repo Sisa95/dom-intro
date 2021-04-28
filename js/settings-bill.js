@@ -23,73 +23,74 @@
 
   
 
-var sum = document.querySelector(".calculateButton");
-var updateSettings = document.querySelector(".updateSettings");
+    var sum = document.querySelector(".calculateButton");
+    var updateSettings = document.querySelector(".updateSettings");
 
-var callCost = 0;
-var smsCost = 0;
-var warningCap = 0;
-var criticalCap = 0;
-var totalBillCost = 0
-var call = 0;
-var sms = 0;
+    var callCost = 0;
+    var smsCost = 0;
+    var warningCap = 0;
+    var criticalCap = 0;
+    var totalBillCost = 0
+    var call = parseFloat(0.00);
+    var sms = 0;
 
 function settingsFunction(){
+    //clearing html
+  var callCostSetting = document.querySelector(".callCostSetting").innerHTML = "0.00"
+  var totalSettings = document.querySelector(".totalSettings").innerHTML = "0.00"
 
-var totalSettings = document.querySelector(".totalSettings");
-var callCostSetting = document.querySelector(".callCostSetting").value;
-var smsCostSetting = document.querySelector(".smsCostSetting").value;
-var warningLevelSetting = document.querySelector(".warningLevelSetting").value;
-var criticalLevelSetting = document.querySelector(".criticalLevelSetting").value; 
+  //resetting variable
+   
 
-callCost = Number(callCostSetting);
-smsCost = Number(smsCostSetting);
-warningCap = Number(warningLevelSetting);
-criticalCap = Number(criticalLevelSetting);
+    var callCostSetting = document.querySelector(".callCostSetting").value;
+    var smsCostSetting = document.querySelector(".smsCostSetting").value;
+    var warningLevelSetting = document.querySelector(".warningLevelSetting").value;
+    var criticalLevelSetting = document.querySelector(".criticalLevelSetting").value; 
 
-    if(warningCap > totalBillCost){
-        totalSettings.style.color = "black";
-    } else if(warningCap == criticalCap){
-        totalSettings.style.color = "orange";
-    }
+    callCost = Number(callCostSetting);
+    smsCost = Number(smsCostSetting)
+    warningCap = Number(warningLevelSetting)
+    criticalCap = Number(criticalLevelSetting)
 }
 
 function calculate(){
-
-
-var callTotalSettings = document.querySelector(".callTotalSettings");
-var smsTotalSettings = document.querySelector(".smsTotalSettings")
-var totalSettings = document.querySelector(".totalSettings")
-
-var radioButtonChecked= document.querySelector("input[name='billItemTypeWithSettings']:checked");
-
-if (radioButtonChecked){
-    var billItemTypeWithSettings = radioButtonChecked.value;
-    
    
-    if(billItemTypeWithSettings === "call") {
-        call = call + callCost;  
-    } else if(billItemTypeWithSettings === "sms"){
-        sms = sms + smsCost; 
-    }
 
-    if(totalBillCost < criticalCap){
-        totalBillCost = call + sms;
-        callTotalSettings.innerHTML = call.toFixed(2); 
-        smsTotalSettings.innerHTML = sms.toFixed(2); 
-        totalSettings.innerHTML = totalBillCost.toFixed(2); 
+    var callTotalSettings = document.querySelector(".callTotalSettings");
+    var smsTotalSettings = document.querySelector(".smsTotalSettings")
+    var totalSettings = document.querySelector(".totalSettings")
 
-
-        if(totalBillCost >= criticalCap){
-            totalSettings.style.color = "red";
+    var radioButtonChecked= document.querySelector("input[name='billItemTypeWithSettings']:checked");
+  
+    if (radioButtonChecked){
+        var billItemTypeWithSettings = radioButtonChecked.value;
+        
+       
+        if(billItemTypeWithSettings === "call") {
+            call = call + callCost;  
+        } else if(billItemTypeWithSettings === "sms"){
+            sms = sms + smsCost; 
         }
-         else if(totalBillCost >=warningCap && totalBillCost < criticalCap ){
-            totalSettings.style.color = "orange"; 
-        } else if(totalBillCost < criticalCap){
-            totalSettings.style.color = "black";
+
+        if(totalBillCost < criticalCap){
+            totalBillCost = call + sms;
+            callTotalSettings.innerHTML = call.toFixed(2); 
+            smsTotalSettings.innerHTML = sms.toFixed(2); 
+            totalSettings.innerHTML = totalBillCost.toFixed(2); 
+
+
+            if(totalBillCost >= criticalCap){
+                totalSettings.style.color = "red";
+            }
+             else if(totalBillCost >=warningCap && totalBillCost < criticalCap ){
+                totalSettings.style.color = "orange"; 
+            } else if(totalBillCost < criticalCap){
+                totalSettings.style.color = "black";
+            }
+        } else{
+            alert("exceeded ")
         }
     }
-}
 
 }
 sum.addEventListener("click", calculate);
