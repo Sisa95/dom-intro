@@ -35,22 +35,25 @@
     var sms = 0;
 
 function settingsFunction(){
-    //clearing html
-  var callCostSetting = document.querySelector(".callCostSetting").innerHTML = "0.00"
-  var totalSettings = document.querySelector(".totalSettings").innerHTML = "0.00"
-
-  //resetting variable
-   
+ 
 
     var callCostSetting = document.querySelector(".callCostSetting").value;
     var smsCostSetting = document.querySelector(".smsCostSetting").value;
     var warningLevelSetting = document.querySelector(".warningLevelSetting").value;
     var criticalLevelSetting = document.querySelector(".criticalLevelSetting").value; 
 
+    var totalSettings = document.querySelector(".totalSettings");
+
     callCost = Number(callCostSetting);
     smsCost = Number(smsCostSetting)
     warningCap = Number(warningLevelSetting)
     criticalCap = Number(criticalLevelSetting)
+
+    if(warningCap > totalBillCost){
+        totalSettings.style.color = "black"
+    } else if(criticalCap > warningCap){
+        totalSettings.style.color = "orange"
+    }
 }
 
 function calculate(){
@@ -87,8 +90,6 @@ function calculate(){
             } else if(totalBillCost < criticalCap){
                 totalSettings.style.color = "black";
             }
-        } else{
-            alert("exceeded ")
         }
     }
 
